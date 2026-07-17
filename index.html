@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>to-do-list</title>
   <style>
     body{
@@ -36,11 +37,19 @@
  .delete-button{
  background-color: rgb(156, 18, 18);
  }
-
+.anotherproject {
+  font-size:30px;
+  background-color:rgb(85, 85, 150);
+  color: white;
+  padding:10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
   </style>
 </head>
 <body>
-      <p class="title">Todo List</p>
+      <p class="title" style="font-size:30px">Todo List</p>
   <div class="practice">
 
     <input class="to-do1" type="text" placeholder="Todo name">
@@ -48,17 +57,18 @@
     <button  class="add-button">Add</button>  
     <div class="js-result"></div>
   </div>
-
+ 
+<a href="">
+   <button class = "anotherproject"> Another Project </button>
+  </a>
   <script>
-    let array1 = [];  // Now stores objects: [{name: "...", date: "..."}]
+    let array1 = [];  
 
     function addit() {
       const name = document.querySelector('.to-do1').value.trim();
       const date = document.querySelector('.date').value;
       
-      if (!name) return;  // Skip empty
-      
-      // Push OBJECT with name + date
+      if (!name) return;  
       array1.push({ name: name, date: date });
       
       // Clear inputs
@@ -78,6 +88,7 @@
             <div>${todo.date}</div>
             <button class="delete-button">
               Delete</button>`
+         
         }
       )
 
