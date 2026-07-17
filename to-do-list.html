@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>to-do-list</title>
+  <style>
+    body{
+      font-family: Arial;
+    }
+    .practice,.js-result {
+      display :grid;
+      grid-template-columns: 200px 150px 100px;
+      column-gap: 15px;
+      row-gap:20px;
+      align-items:center;
+    }
+   .to-do1,.date{
+      box-shadow: 1px 2px 0.3;
+     font-size: 15px;
+      padding:6px
+    }
+
+ .add-button,.delete-button{
+    cursor:pointer;
+    padding:8px 10px;
+    color: white;
+    border: none;
+    font-size: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
+ }
+ .add-button{
+  background-color: green;
+ }
+ .delete-button{
+ background-color: rgb(156, 18, 18);
+ }
+
+  </style>
+</head>
+<body>
+      <p class="title">Todo List</p>
+  <div class="practice">
+
+    <input class="to-do1" type="text" placeholder="Todo name">
+    <input class="date" type="date">
+    <button  class="add-button">Add</button>  
+    <div class="js-result"></div>
+  </div>
+
+  <script>
+    let array1 = [];  // Now stores objects: [{name: "...", date: "..."}]
+
+    function addit() {
+      const name = document.querySelector('.to-do1').value.trim();
+      const date = document.querySelector('.date').value;
+      
+      if (!name) return;  // Skip empty
+      
+      // Push OBJECT with name + date
+      array1.push({ name: name, date: date });
+      
+      // Clear inputs
+      document.querySelector('.to-do1').value = '';
+      document.querySelector('.date').value = '';
+      
+      render();
+    }
+
+    function render() {
+      let scope = '';
+      array1.forEach(
+        (todoobject,index)=>{
+           const todo = array1[index];  
+          scope += `
+          <div>${todo.name} </div>
+            <div>${todo.date}</div>
+            <button class="delete-button">
+              Delete</button>`
+        }
+      )
+
+      document.querySelector('.js-result').innerHTML = scope;
+   
+
+    document.querySelectorAll('.delete-button')
+    .forEach((deletebutton,index)=>{
+      deletebutton.addEventListener('click',()=>{
+        array1.splice(index,1); render();
+      });
+    })
+};//fxn render end
+    document.querySelector('.add-button')
+    .addEventListener ('click',()=>{
+      addit()
+    })
+
+  </script>
+</body>
+</html>
